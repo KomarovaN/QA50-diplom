@@ -30,6 +30,7 @@ dependencies {
     testImplementation 'io.qameta.allure:allure-selenide:2.21.0'
     testImplementation 'io.rest-assured:rest-assured:4.3.0'
     testImplementation 'io.rest-assured:json-schema-validator:4.3.0'
+    testImplementation 'com.github.javafaker:javafaker:1.0.2'
 }
 
 test {
