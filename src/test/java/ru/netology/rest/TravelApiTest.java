@@ -20,8 +20,8 @@ public class TravelApiTest {
             .build();
 
     @Test
-    @DisplayName("Should be successfully pay with approved card")
-    void shouldPostPayCard() {
+    @DisplayName("Should be successful payment with approved card")
+    void shouldSuccessfulPayment() {
         // Given - When - Then
         // Предусловия
         given()
@@ -36,8 +36,8 @@ public class TravelApiTest {
     }
 
     @Test
-    @DisplayName("Should be successfully credit pay with approved card")
-    void shouldPostCreditCard() {
+    @DisplayName("Should be successful credit request with approved card")
+    void shouldSuccessfulCreditRequest() {
         // Given - When - Then
         // Предусловия
         given()
@@ -50,5 +50,4 @@ public class TravelApiTest {
         .then()
                 .statusCode(200);
     }
-
 }

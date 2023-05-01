@@ -19,7 +19,6 @@ public class TravelTest {
     static void setUpAll() {
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
-
     @AfterAll
     static void tearDownAll() {
         SelenideLogger.removeListener("allure");
@@ -201,5 +200,6 @@ public class TravelTest {
         payPage.validPay(invalidCard);
         payPage.findErrorMessage("Поле обязательно для заполнения");
     }
+
 
 }

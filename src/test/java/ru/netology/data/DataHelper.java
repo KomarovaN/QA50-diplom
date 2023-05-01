@@ -199,6 +199,10 @@ public class DataHelper {
         String month;
         String holder;
         String cvc;
-        //String cardStatus;
+    }
+
+    @Value
+    public static class CardStatus {
+        String status;
     }
 }
