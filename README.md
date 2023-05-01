@@ -1,4 +1,10 @@
-## Проверка с postgresql
+## Требуемое ПО
+На компьютере дожен быть установлен Docker и образы:
+- node-app:1.0
+- postgres:12-alpine
+- mysql:8.0
+
+## Порядок проверки с postgresql
 В IntelliJ IDEA 
 1. Выполнить в первом терминале команду запуска контейнеров:
 
@@ -19,7 +25,7 @@ java -jar artifacts/aqa-shop.jar
 docker-compose down.  
 8. В каталоге проекта удалить каталог data.
 
-## Проверка с mysql
+## Порядок проверки с mysql
 1. В файле application.properties изменить значение spring.datasource.url на jdbc:mysql://localhost:3306/data.
 2. В файле docker-compose.yml убрать комментарии с блока mysql, закомментировать блок postgresql.
 3. В файле DBHelper.java в методе getConnection() убрать комментарий со строчки для подключения mysql, закомментировать строчку для подключения postgresql. 
