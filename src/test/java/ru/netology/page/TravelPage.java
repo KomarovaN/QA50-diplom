@@ -12,7 +12,12 @@ public class TravelPage {
 
     public PayPage payTravel () {
         payButton.click();
-        return new PayPage();
+        return new PayPage("pay");
+    }
+
+    public PayPage creditTravel () {
+        creditButton.click();
+        return new PayPage("credit");
     }
 
 }

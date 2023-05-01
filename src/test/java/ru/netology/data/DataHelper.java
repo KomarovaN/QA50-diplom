@@ -3,6 +3,8 @@ package ru.netology.data;
 import com.github.javafaker.Faker;
 import lombok.Value;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class DataHelper {
@@ -10,65 +12,193 @@ public class DataHelper {
     }
 
     public static CardInfo getCardInfoValidApproved() {
-        return new CardInfo ("4444 4444 4444 4441", "08", "23", generateName("en"),"125", "APPROVED");
+        return new CardInfo(
+                getNumber("Approved"),
+                generateExpireYear(),
+                generateExpireMonth(),
+                generateHolder("en"),
+                generateCVC());
     }
 
     public static CardInfo getCardInfoValidDeclined() {
-        return new CardInfo ("4444 4444 4444 4442", "08", "23",generateName("en"),"125", "DECLINED");
+        return new CardInfo(
+                getNumber("Declined"),
+                generateExpireYear(),
+                generateExpireMonth(),
+                generateHolder("en"),
+                generateCVC());
     }
 
     public static CardInfo getCardInfoInvalidNumber() {
-        return new CardInfo ("4444 4444 4444", "08", "23", generateName("en"),"125", "APPROVED");
-    }
-
-    public static CardInfo getCardInfoInvalidMonth() {
-        return new CardInfo ("4444 4444 4444 4441", "22", "23", generateName("en"),"125", "APPROVED");
+        return new CardInfo(
+                generateInvalidNumber(),
+                generateExpireYear(),
+                generateExpireMonth(),
+                generateHolder("en"),
+                generateCVC());
     }
 
     public static CardInfo getCardInfoInvalidYear() {
-        return new CardInfo ("4444 4444 4444 4441", "08", "22", generateName("en"),"125", "APPROVED");
+        return new CardInfo(
+                getNumber("Approved"),
+                generateInvalidExpireYear(),
+                generateExpireMonth(),
+                generateHolder("en"),
+                generateCVC());
+    }
+
+    public static CardInfo getCardInfoInvalidExpiredMonth() {
+        return new CardInfo(
+                getNumber("Approved"),
+                generateExpireYear(),
+                generateInvalidExpiredMonth(),
+                generateHolder("en"),
+                generateCVC());
+    }
+
+    public static CardInfo getCardInfoInvalidMonth() {
+        return new CardInfo(
+                getNumber("Approved"),
+                generateExpireYear(),
+                generateInvalidMonth(),
+                generateHolder("en"),
+                generateCVC());
     }
 
     public static CardInfo getCardInfoInvalidCVC() {
-        return new CardInfo ("4444 4444 4444 4441", "08", "23", generateName("en"),"12", "APPROVED");
+        return new CardInfo(
+                getNumber("Approved"),
+                generateExpireYear(),
+                generateExpireMonth(),
+                generateHolder("en"),
+                generateInvalidCVC());
     }
 
-    public static CardInfo getCardInfoInvalidOwner() {
-        return new CardInfo ("4444 4444 4444 4441", "08", "23", generateName("ru"),"125", "APPROVED");
+    public static CardInfo getCardInfoInvalidHolderLocal() {
+        return new CardInfo(
+                getNumber("Approved"),
+                generateExpireYear(),
+                generateExpireMonth(),
+                generateHolder("uk"),
+                generateCVC());
+    }
+
+    public static CardInfo getCardInfoInvalidHolderNumber() {
+        return new CardInfo(
+                getNumber("Approved"),
+                generateExpireYear(),
+                generateExpireMonth(),
+                generateInvalidHolder(),
+                generateCVC());
     }
 
     public static CardInfo getCardInfoNoNumber() {
-        return new CardInfo ("", "08", "23", generateName("uk"),"125", "APPROVED");
+        return new CardInfo(
+                "",
+                generateExpireYear(),
+                generateExpireMonth(),
+                generateHolder("en"),
+                generateCVC());
     }
 
-    public static CardInfo getCardInfoNoOMonth() {
-        return new CardInfo ("4444 4444 4444 4441", "", "23", generateName("en"),"125", "APPROVED");
+    public static CardInfo getCardInfoNoMonth() {
+        return new CardInfo(
+                getNumber("Approved"),
+                generateExpireYear(),
+                "",
+                generateHolder("en"),
+                generateCVC());
     }
 
     public static CardInfo getCardInfoNoYear() {
-        return new CardInfo ("4444 4444 4444 4441", "08", "", generateName("en"),"125", "APPROVED");
+        return new CardInfo(
+                getNumber("Approved"),
+                "",
+                generateExpireMonth(),
+                generateHolder("en"),
+                generateCVC());
     }
 
     public static CardInfo getCardInfoNoCVC() {
-        return new CardInfo ("4444 4444 4444 4441", "08", "23", generateName("en"),"", "APPROVED");
+        return new CardInfo(
+                getNumber("Approved"),
+                generateExpireYear(),
+                generateExpireMonth(),
+                generateHolder("en"),
+                "");
     }
 
-    public static CardInfo getCardInfoNoOwner() {
-        return new CardInfo ("4444 4444 4444 4441", "08", "23", "","125", "APPROVED");
+    public static CardInfo getCardInfoNoHolder() {
+        return new CardInfo(getNumber("Approved"), generateExpireYear(), generateExpireMonth(), "", generateCVC());
     }
 
-    public static String generateName(String locale) {
+    public static String getNumber(String status) {
+        if (status.equals("Approved")) {
+            return "4444 4444 4444 4441";
+        }
+        if (status.equals("Declined")) {
+            return "4444 4444 4444 4442";
+        }
+        return null;
+    }
+
+    public static String generateInvalidNumber() {
+        Faker faker = new Faker();
+        return faker.number().digits(8);
+    }
+
+    public static String generateHolder(String locale) {
         Faker faker = new Faker(new Locale(locale));
+        faker.number().digits(3);
         return faker.name().lastName() + " " + faker.name().firstName();
+    }
+
+    public static String generateInvalidHolder() {
+        Faker faker = new Faker();
+        return faker.number().digits(256);
+    }
+
+    public static String generateExpireMonth() {
+        return LocalDate.now().format(DateTimeFormatter.ofPattern("MM"));
+    }
+
+    public static String generateInvalidExpiredMonth() {
+        Faker faker = new Faker();
+        Integer invalidMonth = faker.number().numberBetween(13,99);
+        return invalidMonth.toString();
+    }
+
+    public static String generateInvalidMonth() {
+        Faker faker = new Faker();
+        Integer invalidMonth = faker.number().numberBetween(0,9);
+        return invalidMonth.toString();
+    }
+
+    public static String generateExpireYear() {
+        return LocalDate.now().plusYears(2).format(DateTimeFormatter.ofPattern("yy"));
+    }
+
+    public static String generateInvalidExpireYear() {
+        return LocalDate.now().minusYears(2).format(DateTimeFormatter.ofPattern("yy"));
+    }
+
+    public static String generateCVC() {
+        Faker faker = new Faker();
+        return faker.number().digits(3);
+    }
+
+    public static String generateInvalidCVC() {
+        Faker faker = new Faker();
+        return faker.number().digits(2);
     }
 
     @Value
     public static class CardInfo {
-        String cardNumber;
-        String expireMonth;
-        String expireYear;
-        String cardOwner;
-        String securityCode;
-        String cardStatus;
+        String number;
+        String year;
+        String month;
+        String holder;
+        String cvc;
+        //String cardStatus;
     }
 }

@@ -1,5 +1,6 @@
 package ru.netology.page;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import ru.netology.data.DataHelper;
 
@@ -11,12 +12,12 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class PayPage {
     private SelenideElement headerPay = $(byText("Оплата по карте"));
-    //private SelenideElement headerCredit = $(byText("Кредит по данным карты"));
+    private SelenideElement headerCredit = $(byText("Кредит по данным карты"));
     private SelenideElement numberField = $(".input__control", 0);
     private SelenideElement monthField = $(".input__control", 1);
     private SelenideElement yearField = $(".input__control", 2);
-    private SelenideElement ownerField = $(".input__control", 3);
-    private SelenideElement secretcodeField = $(".input__control", 4);
+    private SelenideElement holderField = $(".input__control", 3);
+    private SelenideElement cvcField = $(".input__control", 4);
     private SelenideElement continueButton = $(byText("Продолжить"));
     private static SelenideElement errorMessage = $(".input__sub");
     private static SelenideElement closerMessageOK = $(".notification__content",0);
@@ -24,28 +25,45 @@ public class PayPage {
     //.notification_status_error  .notification__title "Ошибка" .notification__content "Ошибка! Банк отказал в проведении операции."
     //.notification_status_ok  .notification__title "Успешно" .notification__content "Операция одобрена Банком."
 
-    public PayPage() {
-        headerPay.shouldBe(visible);
+    public PayPage(String pay) {
+        if (pay.equals("pay")) {
+            headerPay.shouldBe(visible);
+        }
+        if (pay.equals("credit")) {
+            headerCredit.shouldBe(visible);
+        }
     }
 
     public void validPay(DataHelper.CardInfo cardInfo) {
-        numberField.setValue(cardInfo.getCardNumber());
-        monthField.setValue(cardInfo.getExpireMonth());
-        yearField.setValue(cardInfo.getExpireYear());
-        ownerField.setValue(cardInfo.getCardOwner());
-        secretcodeField.setValue(cardInfo.getSecurityCode());
+        numberField.setValue(cardInfo.getNumber());
+        monthField.setValue(cardInfo.getMonth());
+        yearField.setValue(cardInfo.getYear());
+        holderField.setValue(cardInfo.getHolder());
+        cvcField.setValue(cardInfo.getCvc());
         continueButton.click();
     }
 
     public void findErrorMessage(String textMessage) {
-        errorMessage.shouldHave(exactText(textMessage), Duration.ofSeconds(10)).shouldBe(visible);
+        errorMessage.shouldHave(exactText(textMessage)).shouldBe(visible, Duration.ofSeconds(5));
     }
 
-    public void findCloserMessageOK(String textMessage) {
-        closerMessageOK.shouldHave(exactText(textMessage), Duration.ofSeconds(10)).shouldBe(visible);
+    public void findCloserMessageOK() {
+        closerMessageOK.shouldHave(exactText("Операция одобрена Банком."))
+                .shouldBe(visible,Duration.ofSeconds(7));
     }
 
-    public void findCloserMessageError(String textMessage) {
-        closerMessageError.shouldHave(exactText(textMessage), Duration.ofSeconds(10)).shouldBe(visible);
+    public void findNotCloserMessageOK() {
+        closerMessageError.shouldHave(exactText("Операция одобрена Банком."))
+                .shouldBe(hidden,Duration.ofSeconds(15));
+    }
+
+    public void findCloserMessageError() {
+        closerMessageError.shouldHave(exactText("Ошибка! Банк отказал в проведении операции."))
+                .shouldBe(visible,Duration.ofSeconds(7));
+    }
+
+    public void findNotCloserMessageError() {
+        closerMessageError.shouldHave(exactText("Ошибка! Банк отказал в проведении операции."))
+                .shouldBe(hidden,Duration.ofSeconds(15));
     }
 }
