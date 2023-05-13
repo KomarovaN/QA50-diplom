@@ -16,9 +16,10 @@
 * _TravelApiTest_ - 100% неуспешных.
 
 Репорты Allure:
-  ![img_1.png](img_1.png)
-  ![img_2.png](img_2.png)
-  ![img_3.png](img_3.png)
+
+  ![img_1.png](images/img_1.png)
+  ![img_2.png](images/img_2.png)
+  ![img_3.png](images/img_3.png)
 
 #### Bag-репорты: открыты 5 issues.
 * [В поле "Владелец" можно ввести цифры, любые знаки, буквы не латинского алфавита в неограниченном количестве #1](https://github.com/KomarovaN/QA50-diplom/issues/1),
@@ -44,7 +45,7 @@
 то есть когда симулятор сервисов банка вернет код выполнения запроса 200,
 и API-тесты (_class TravelApiTest_) пройдут успешно.
 
-![img_6.png](img_6.png)
-![img_7.png](img_7.png)
+![img_6.png](images/img_6.png)
+![img_7.png](images/img_7.png)
 
 
