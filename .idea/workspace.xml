@@ -5,30 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="66b24d36-fddc-4e06-b6a5-96866a83aad8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/reports/comments.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reports/images/img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reports/images/img_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reports/images/img_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reports/images/img_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ru/netology/test/TravelCreditTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plan.md" beforeDir="false" afterPath="$PROJECT_DIR$/reports/Plan.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report.md" beforeDir="false" afterPath="$PROJECT_DIR$/reports/Report.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Summary.md" beforeDir="false" afterPath="$PROJECT_DIR$/reports/Summary.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/img_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/img_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/img_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/img_6.png" beforeDir="false" afterPath="$PROJECT_DIR$/reports/images/img_6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/img_7.png" beforeDir="false" afterPath="$PROJECT_DIR$/reports/images/img_7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/netology/data/DBHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/netology/data/DBHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/netology/data/DataHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/netology/data/DataHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/netology/page/PayPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/netology/page/PayPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/netology/rest/TravelApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/netology/test/TravelApiTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/netology/test/DBTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/netology/test/DBTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/netology/test/TravelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/netology/test/TravelTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports/comments.md" beforeDir="false" afterPath="$PROJECT_DIR$/reports/comments.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
