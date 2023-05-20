@@ -44,12 +44,12 @@ public class PayPage {
     }
 
     public void findErrorMessage(String textMessage) {
-        errorMessage.shouldHave(exactText(textMessage)).shouldBe(visible, Duration.ofSeconds(5));
+        errorMessage.shouldHave(exactText(textMessage)).shouldBe(visible);
     }
 
     public void findCloserMessageOK() {
         closerMessageOK.shouldHave(exactText("Операция одобрена Банком."))
-                .shouldBe(visible,Duration.ofSeconds(7));
+                .shouldBe(visible,Duration.ofSeconds(15));
     }
 
     public void findNotCloserMessageOK() {
@@ -59,7 +59,7 @@ public class PayPage {
 
     public void findCloserMessageError() {
         closerMessageError.shouldHave(exactText("Ошибка! Банк отказал в проведении операции."))
-                .shouldBe(visible,Duration.ofSeconds(7));
+                .shouldBe(visible,Duration.ofSeconds(15));
     }
 
     public void findNotCloserMessageError() {

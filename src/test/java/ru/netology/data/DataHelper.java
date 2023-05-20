@@ -13,7 +13,7 @@ public class DataHelper {
 
     public static CardInfo getCardInfoValidApproved() {
         return new CardInfo(
-                getNumber("Approved"),
+                getNumberApproved(),
                 generateExpireYear(),
                 generateExpireMonth(),
                 generateHolder("en"),
@@ -22,7 +22,7 @@ public class DataHelper {
 
     public static CardInfo getCardInfoValidDeclined() {
         return new CardInfo(
-                getNumber("Declined"),
+                getNumberDeclined(),
                 generateExpireYear(),
                 generateExpireMonth(),
                 generateHolder("en"),
@@ -40,7 +40,7 @@ public class DataHelper {
 
     public static CardInfo getCardInfoInvalidYear() {
         return new CardInfo(
-                getNumber("Approved"),
+                getNumberApproved(),
                 generateInvalidExpireYear(),
                 generateExpireMonth(),
                 generateHolder("en"),
@@ -49,7 +49,7 @@ public class DataHelper {
 
     public static CardInfo getCardInfoInvalidExpiredMonth() {
         return new CardInfo(
-                getNumber("Approved"),
+                getNumberApproved(),
                 generateExpireYear(),
                 generateInvalidExpiredMonth(),
                 generateHolder("en"),
@@ -58,7 +58,7 @@ public class DataHelper {
 
     public static CardInfo getCardInfoInvalidMonth() {
         return new CardInfo(
-                getNumber("Approved"),
+                getNumberApproved(),
                 generateExpireYear(),
                 generateInvalidMonth(),
                 generateHolder("en"),
@@ -67,7 +67,7 @@ public class DataHelper {
 
     public static CardInfo getCardInfoInvalidCVC() {
         return new CardInfo(
-                getNumber("Approved"),
+                getNumberApproved(),
                 generateExpireYear(),
                 generateExpireMonth(),
                 generateHolder("en"),
@@ -76,7 +76,7 @@ public class DataHelper {
 
     public static CardInfo getCardInfoInvalidHolderLocal() {
         return new CardInfo(
-                getNumber("Approved"),
+                getNumberApproved(),
                 generateExpireYear(),
                 generateExpireMonth(),
                 generateHolder("uk"),
@@ -85,7 +85,7 @@ public class DataHelper {
 
     public static CardInfo getCardInfoInvalidHolderNumber() {
         return new CardInfo(
-                getNumber("Approved"),
+                getNumberApproved(),
                 generateExpireYear(),
                 generateExpireMonth(),
                 generateInvalidHolder(),
@@ -103,7 +103,7 @@ public class DataHelper {
 
     public static CardInfo getCardInfoNoMonth() {
         return new CardInfo(
-                getNumber("Approved"),
+                getNumberApproved(),
                 generateExpireYear(),
                 "",
                 generateHolder("en"),
@@ -112,7 +112,7 @@ public class DataHelper {
 
     public static CardInfo getCardInfoNoYear() {
         return new CardInfo(
-                getNumber("Approved"),
+                getNumberApproved(),
                 "",
                 generateExpireMonth(),
                 generateHolder("en"),
@@ -121,7 +121,7 @@ public class DataHelper {
 
     public static CardInfo getCardInfoNoCVC() {
         return new CardInfo(
-                getNumber("Approved"),
+                getNumberApproved(),
                 generateExpireYear(),
                 generateExpireMonth(),
                 generateHolder("en"),
@@ -129,17 +129,15 @@ public class DataHelper {
     }
 
     public static CardInfo getCardInfoNoHolder() {
-        return new CardInfo(getNumber("Approved"), generateExpireYear(), generateExpireMonth(), "", generateCVC());
+        return new CardInfo(getNumberApproved(), generateExpireYear(), generateExpireMonth(), "", generateCVC());
     }
 
-    public static String getNumber(String status) {
-        if (status.equals("Approved")) {
-            return "4444 4444 4444 4441";
-        }
-        if (status.equals("Declined")) {
-            return "4444 4444 4444 4442";
-        }
-        return null;
+    public static String getNumberApproved() {
+       return "4444 4444 4444 4441";
+    }
+
+    public static String getNumberDeclined() {
+        return "4444 4444 4444 4442";
     }
 
     public static String generateInvalidNumber() {
@@ -149,13 +147,12 @@ public class DataHelper {
 
     public static String generateHolder(String locale) {
         Faker faker = new Faker(new Locale(locale));
-        faker.number().digits(3);
         return faker.name().lastName() + " " + faker.name().firstName();
     }
 
     public static String generateInvalidHolder() {
         Faker faker = new Faker();
-        return faker.number().digits(256);
+        return "fg385fk%^#$rtiwegrу_3---3у1ш22%№9";  //faker.number().digits(256);
     }
 
     public static String generateExpireMonth() {
@@ -200,6 +197,8 @@ public class DataHelper {
         String holder;
         String cvc;
     }
+    // в браузере при отправке запроса в body -
+    // {number: "4444 4444 4444 4441", year: "27", month: "09", holder: "truy tuytuy", cvc: "125"}
 
     @Value
     public static class CardStatus {

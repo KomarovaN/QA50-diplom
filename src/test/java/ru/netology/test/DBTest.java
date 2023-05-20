@@ -28,7 +28,7 @@ public class DBTest {
         PayPage payPage = travelPage.payTravel();
         DataHelper.CardInfo cardValidApproved = DataHelper.getCardInfoValidApproved();
         payPage.validPay(cardValidApproved);
-        DataHelper.CardStatus cardStatus = DBHelper.getCardStatus("payment");
+        DataHelper.CardStatus cardStatus = DBHelper.getCardStatusPay();
         String actualStatus = cardStatus.getStatus();
         String expectedStatus = "APPROVED";
         assertEquals (expectedStatus, actualStatus);
@@ -40,7 +40,7 @@ public class DBTest {
         PayPage creditPage = travelPage.creditTravel();
         DataHelper.CardInfo cardValidApproved = DataHelper.getCardInfoValidApproved();
         creditPage.validPay(cardValidApproved);
-        DataHelper.CardStatus cardStatus = DBHelper.getCardStatus("credit_request");
+        DataHelper.CardStatus cardStatus = DBHelper.getCardStatusCredit();
         String actualStatus = cardStatus.getStatus();
         String expectedStatus = "APPROVED";
         assertEquals (expectedStatus, actualStatus);
@@ -52,7 +52,7 @@ public class DBTest {
         PayPage payPage = travelPage.payTravel();
         DataHelper.CardInfo cardValidDeclined = DataHelper.getCardInfoValidDeclined();
         payPage.validPay(cardValidDeclined);
-        DataHelper.CardStatus cardStatus = DBHelper.getCardStatus("payment");
+        DataHelper.CardStatus cardStatus = DBHelper.getCardStatusPay();
         String actualStatus = cardStatus.getStatus();
         String expectedStatus = "DECLINED";
         assertEquals (expectedStatus, actualStatus);
@@ -64,7 +64,7 @@ public class DBTest {
         PayPage creditPage = travelPage.creditTravel();
         DataHelper.CardInfo cardValidDeclined = DataHelper.getCardInfoValidDeclined();
         creditPage.validPay(cardValidDeclined);
-        DataHelper.CardStatus cardStatus = DBHelper.getCardStatus("credit_request");
+        DataHelper.CardStatus cardStatus = DBHelper.getCardStatusCredit();
         String actualStatus = cardStatus.getStatus();
         String expectedStatus = "DECLINED";
         assertEquals (expectedStatus, actualStatus);

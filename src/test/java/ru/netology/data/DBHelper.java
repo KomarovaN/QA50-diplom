@@ -14,28 +14,22 @@ public class DBHelper {
     private DBHelper() {
     }
 
+    @SneakyThrows
     private static Connection getConnection() throws SQLException {
         return DriverManager.getConnection("jdbc:postgresql://localhost:5432/data", "app", "pass");
         //return DriverManager.getConnection("jdbc:mysql://localhost:3306/app", "app", "pass");
     }
-
-    public static DataHelper.CardStatus getCardStatus(String payType) {
-       String codeSQL;
-        if (payType.equals("payment")) {
-            codeSQL = "SELECT status FROM payment_entity ORDER BY created DESC LIMIT 1";
-        } else if (payType.equals("credit_request")) {
-            codeSQL = "SELECT status FROM credit_request_entity ORDER BY created DESC LIMIT 1";
-        } else {
-            return null;
-        }
-
-        try (Connection conn = getConnection()) {
-            var status = runner.query(conn, codeSQL, new ScalarHandler<String>());
-            return new DataHelper.CardStatus(status);
-        } catch (SQLException exception) {
-            exception.printStackTrace();
-        }
-        return null;
+    @SneakyThrows
+    public static DataHelper.CardStatus getCardStatusPay() {
+       String codeSQL = "SELECT status FROM payment_entity ORDER BY created DESC LIMIT 1";
+       Connection conn = getConnection();
+       return new DataHelper.CardStatus(runner.query(conn, codeSQL, new ScalarHandler<String>()));
+    }
+    @SneakyThrows
+    public static DataHelper.CardStatus getCardStatusCredit() {
+        String codeSQL = "SELECT status FROM credit_request_entity ORDER BY created DESC LIMIT 1";
+        Connection conn = getConnection();
+        return new DataHelper.CardStatus(runner.query(conn, codeSQL, new ScalarHandler<String>()));
     }
 
     @SneakyThrows
